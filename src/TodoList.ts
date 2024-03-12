@@ -7,6 +7,8 @@ export type Task = {
   subTasks?: Task[];
 };
 
+export type UpdateTask = Partial<Task>;
+
 export class TodoList {
   private tasks: Task[] = [];
 
@@ -25,6 +27,14 @@ export class TodoList {
     } catch (error) {
       return error;
     }
+  }
+
+  updateTask(index: number, task: UpdateTask) {
+    this.tasks[index] = { ...this.tasks[index], ...task };
+  }
+
+  removeTask(index: number) {
+    this.tasks.splice(index, 1);
   }
 
   getTasks() {
