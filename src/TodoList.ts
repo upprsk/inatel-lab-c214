@@ -13,4 +13,8 @@ export class TodoList {
   add(task: Task) {
     this.tasks.push(task);
   }
+
+  getTasks() {
+    return this.tasks;
+  }
 }
