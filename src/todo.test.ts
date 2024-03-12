@@ -28,4 +28,40 @@ describe('TodoList', () => {
       expect(tasks).toEqual([]);
     });
   });
+
+  describe('Testing update', () => {
+    test('should update existing task', () => {
+      const todoInstance = new TodoList();
+      todoInstance.add(anyTask);
+
+      const updatedProperties = { priority: '2' };
+      todoInstance.updateTask(0, updatedProperties);
+
+      const tasks = todoInstance.getTasks();
+      expect(tasks).toEqual([{ ...anyTask, ...updatedProperties }]);
+    });
+  });
+
+  describe('Testing remove', () => {
+    test('should delete a task', () => {
+      const todoInstance = new TodoList();
+      todoInstance.add(anyTask);
+
+      todoInstance.removeTask(0);
+
+      const tasks = todoInstance.getTasks();
+      expect(tasks).toEqual([]);
+    });
+
+    test('should delete only one task', () => {
+      const todoInstance = new TodoList();
+      todoInstance.add(anyTask);
+      todoInstance.add(anyTask);
+
+      todoInstance.removeTask(0);
+
+      const tasks = todoInstance.getTasks();
+      expect(tasks).toEqual([anyTask]);
+    });
+  });
 });
